@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% load static %}
 
 <div class="container mt-4">      
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -32,7 +32,7 @@
 <br>
 <div class="row mt-4 g-6">
     <div class="col-8">
-        <u><center><h3 class="mb-4" style="background-color: blanchedalmond;">Medal Table | BreakDown!</h3></center></u>
+        <u><center><h3 class="mb-4" id="medaltable" style="background-color: blanchedalmond;">Medal Table | BreakDown!</h3></center></u>
             <table class="table table-striped">
                 <thead class="thead-dark">
                   <tr>
@@ -50,7 +50,9 @@
                   <tr>
                     <td>{{medaltable.Rank}}</td>
                     <td>{{medaltable.Country}}</td>
-                    <td>{{medaltable.Flag}}</td>
+                    {% if medaltable.Country %}
+                        <td><img src="{%static 'images/'%}{{medaltable.Country}}.svg"></td>
+                    {% endif %}
                     <td>{{medaltable.Gold}}</td>
                     <td>{{medaltable.Silver}}</td>
                     <td>{{medaltable.Bronze}}</td>
@@ -67,11 +69,19 @@
 
         <form method="GET" action="{% url 'BackEndMedalTable' %}">
             <center><h6 style="color:gray">"Kindly type in the Participating Country of your choice! <br> <i>hint:"UnitedKingdom"</h6></i></h6></center>
+            <center>
             <div class="form-check">
                 {{ form.as_p }}
                 <center><button type="submit" class="btn btn-danger">Submit</button></center>
+                <br>
+                <center><button onclick="refreshPage()"type="submit_refresh" class="btn btn-danger">refreshPage</button></center>
             </div>
-    
+            </center>
+            <script>
+                function refreshPage(){
+                    window.location.href = 'http://localhost:8000';
+                }
+            </script>
             
         </form>
     </div>

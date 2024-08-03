@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django import forms
 
 class MedalTableForm(forms.Form):
-    Country = forms.CharField()
+    Medal_Table_Query = forms.CharField()
     
 
 
