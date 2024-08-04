@@ -1,3 +1,0 @@
-django
-django-filter
-serverless-wsgi
