@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.BackEndMedalTable, name='BackEndMedalTable'),
-    path('/MedalTableRefresh', views.MedalTableRefresh, name='MedalTableRefresh')
+    path('gamesduration/', views.GamesDuration, name='GamesDuration'),
+    path('gamespercentage/', views.GamesPercentage, name='GamesPercentage')
 ]

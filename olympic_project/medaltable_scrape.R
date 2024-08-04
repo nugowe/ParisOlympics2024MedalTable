@@ -42,8 +42,11 @@ if (!is.null(medal_table)) {
   medal_data <- head(medal_data, -1)
   medal_data <- medal_data[-1,]
   print(medal_data)
+  medal_data$ID <- 1:nrow(medal_data)
+  medal_data <- medal_data[c(8,2,3,4,5,6,7)]
+  names(medal_data)[1] <- "Rank"
 } else {
   cat("Could not find the medal table on the Wikipedia page.\n")
 }
 
-write.csv(medal_data, "/home/nosa2k/MYPROJECTS/DJANGO/ParisOlympics2024MedalTable/olympic_project/olympic_project/medaltable_2024.csv", row.names = FALSE)
+write.csv(medal_data, "/home/nosa2k/MYPROJECTS/DJANGO/ParisOlympics2024MedalTable/olympic_project/olympic_project/data/medaltable_2024.csv", row.names = FALSE)

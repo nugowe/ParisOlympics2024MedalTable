@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Olympic Games | Medal Table!</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
            
@@ -16,6 +16,22 @@
     
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <style>
+        table {
+            border-collapse: collapse; /* Ensures that borders between cells are merged */
+            width: 100%; /* Optional: Makes the table take up the full width of its container */
+        }
+
+        th, td {
+            border: 1px solid black; /* Adds a 1px solid black border to table cells */
+            padding: 8px; /* Optional: Adds padding inside table cells */
+            text-align: left; /* Optional: Aligns text to the left in cells */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Optional: Adds a background color to table headers */
+        }
+    </style>
 </head>
 <body>
 

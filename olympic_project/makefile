@@ -1,0 +1,31 @@
+#FIRST STEP, CHANGE DIRECTORY TO THE PROJECT FOLDER, olympic_project, then run the makefile commands.
+
+# DEFINE YOUR UNIQUE PARAMETER VALUES HERE.
+KUBECTL := microk8s.kubectl
+WORK_DIR := src-kubernetes
+PWD := $(shell pwd)
+#DJANGO_WORK_DIR := ~/ParisOlympics2024MedalTable/olympic_project/
+
+.PHONY: DEPLOY-PROMETHEUS
+DEPLOY-PROMETHEUS:
+	@echo "ENABLING OBSERVABILITY ADDON FOR THIS MICROK8S CLUSTER..."
+	microk8s enable prometheus
+
+
+.PHONY: DEPLOY-MEDALTABLE-LOCALLY
+DEPLOY-MEDALTABLE-LOCALLY:
+	@echo "RUNNING THE DJANGO OLYMPIC MEDAL TABLE APPLICATION DIRECTLY FROM THE DJANGO WEB SERVER.."
+	python3 ${PWD}/manage.py runserver 0.0.0.0:4444
+
+.PHONY: DEPLOY-MEDALTABLE-K8s
+DEPLOY-MEDALTABLE-K8s:
+	@echo "DEPLOYING THE OLYMPIC MEDAL TABLE APPLICATION FROM THE MICROK8S CLUSTER"
+	$(KUBECTL) apply -f ${PWD}/$(WORK_DIR)/templates/namespace.yaml
+	$(KUBECTL) apply -f ${PWD}/$(WORK_DIR)/templates/deployment.yaml
+	
+
+.PHONY: PORT-FORWARD-MEDALTABLE-K8s
+PORT-FORWARD-MEDALTABLE-K8s:
+	@echo "PORT FORWARDING THE DEPLOYMENT APP TO VIEW ON A WEB BROWSER.."
+	$(KUBECTL) port-forward deployment/olympicmedaltablelist :4444 -n olympicmedaltablelist
+	

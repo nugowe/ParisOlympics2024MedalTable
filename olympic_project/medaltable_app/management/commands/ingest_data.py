@@ -1,14 +1,16 @@
 import csv
 from django.core.management.base import BaseCommand
+from pathlib import Path
 from django.conf import settings
 from medaltable_app.models import MedalTable
+
 
 
 class Command(BaseCommand):
     help = "Loads car data from CSV file"
 
     def handle(self, *args, **options):
-        datafile = settings.BASE_DIR / 'olympic_project' / 'data' / 'medaltable_2024.csv'
+        datafile = Path(settings.BASE_DIR) / 'olympic_project' / 'data' / 'medaltable_2024.csv'
 
         with open(datafile) as csvfile:
             reader = csv.reader(csvfile)

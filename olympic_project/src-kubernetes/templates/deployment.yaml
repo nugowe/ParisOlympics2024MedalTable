@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: olympicmedaltablelist
+  name: olympicmedaltablelist
+  namespace: olympicmedaltablelist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: olympicmedaltablelist
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: olympicmedaltablelist
+    spec:
+      containers:
+      - image: nosaugowe/olympicmedaltablelist
+        args:
+        - /bin/sh
+        - "-c"
+        - "echo 'STARTING THE SUPERVISOR BINARY SERVICE..'"
+        - "supervisord.conf /etc/supervisor/conf.d/supervisord.conf"
+        name: olympicmedaltablelist
+        ports:
+        - containerPort: 4444
+        resources: {}
+status: {}

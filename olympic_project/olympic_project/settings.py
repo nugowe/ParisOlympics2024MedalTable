@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'medaltable_app'
+    'medaltable_app',
+    'django_filters'
+    
 ]
 
 MIDDLEWARE = [
@@ -119,7 +121,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Static files (CSS, JavaScript, Images)
+# Directory where collectstatic will collect static files for deployment
 STATIC_URL = '/static/'
 
 # Add this line to include the static directory in the project root
@@ -127,8 +129,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_URL = "/images/"
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = "/images/"
 
 
 # Default primary key field type

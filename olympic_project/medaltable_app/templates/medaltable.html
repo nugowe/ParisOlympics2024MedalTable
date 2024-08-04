@@ -26,15 +26,22 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+   
+    
 </div>
-
+<hr>
+<br>
+</strong><center><div id="time" hx-get="{% url 'GamesDuration' %}" hx-trigger="every 1s"></center></strong>
+<hr>
+</strong><center><div id="time_left" hx-get="{% url 'GamesPercentage' %}" hx-trigger="every 1s"></center></strong>
+<hr>
 <br>
 <br>
 <div class="row mt-4 g-6">
     <div class="col-8">
         <u><center><h3 class="mb-4" id="medaltable" style="background-color: blanchedalmond;">Medal Table | BreakDown!</h3></center></u>
             <table class="table table-striped">
-                <thead class="thead-dark">
+                <thead class="thead-dark table-bordered">
                   <tr>
                     <th scope="col">Rank</th>
                     <th scope="col">Country</th>
@@ -51,7 +58,9 @@
                     <td>{{medaltable.Rank}}</td>
                     <td>{{medaltable.Country}}</td>
                     {% if medaltable.Country %}
-                        <td><img src="{%static 'images/'%}{{medaltable.Country}}.svg"></td>
+                        <td><img src="{% static 'images/' %}{{medaltable.Country}}.svg"></td>
+                    {% else %}
+                        <td><img src="{% static 'images/' %}{{medaltable.Country}}.png"></td>
                     {% endif %}
                     <td>{{medaltable.Gold}}</td>
                     <td>{{medaltable.Silver}}</td>
@@ -68,7 +77,7 @@
         <u><center><h3 class="form-group" style="background-color: blanchedalmond;">Medal Table | Query!</h3></center></u>
 
         <form method="GET" action="{% url 'BackEndMedalTable' %}">
-            <center><h6 style="color:gray">"Kindly type in the Participating Country of your choice! <br> <i>hint:"UnitedKingdom"</h6></i></h6></center>
+            <center><h6 style="color:gray">"Kindly type in the Participating Country of your choice! <br> <i>hint:"GreatBritain"</h6></i></h6></center>
             <center>
             <div class="form-check">
                 {{ form.as_p }}
@@ -78,8 +87,14 @@
             </div>
             </center>
             <script>
-                function refreshPage(){
-                    window.location.href = 'http://localhost:8000';
+                function refreshPage() {
+                    // Stop HTMX requests
+                    if (window.htmx) {
+                        htmx.stop(); // Stop all HTMX requests
+                    }
+                    
+                    // Refresh the page
+                    window.location.href = window.location.href;
                 }
             </script>
             
