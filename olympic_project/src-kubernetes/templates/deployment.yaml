@@ -19,7 +19,7 @@ spec:
         app: olympicmedaltablelist
     spec:
       containers:
-      - image: nosaugowe/olympicmedaltablelist
+      - image: nosaugowe/paris_olympicgames_medaltable
         args:
         - /bin/sh
         - "-c"

@@ -49,4 +49,4 @@ if (!is.null(medal_table)) {
   cat("Could not find the medal table on the Wikipedia page.\n")
 }
 
-write.csv(medal_data, "/home/nosa2k/MYPROJECTS/DJANGO/ParisOlympics2024MedalTable/olympic_project/olympic_project/data/medaltable_2024.csv", row.names = FALSE)
+write.csv(medal_data, "~/olympic_project/data/medaltable_2024.csv", row.names = FALSE)
