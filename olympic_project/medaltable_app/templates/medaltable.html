@@ -3,6 +3,8 @@
 {% block content %}
 {% load static %}
 
+<div id="medaltable">
+<b><u><center><h1 style="background-color: blanchedalmond">OLYMPIC MEDAL TABLE SUMMARY | PARIS 2024</h1></center></u></b>
 <div class="container mt-4">      
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -83,26 +85,16 @@
                 {{ form.as_p }}
                 <center><button type="submit" class="btn btn-danger">Submit</button></center>
                 <br>
-                <center><button onclick="refreshPage()"type="submit_refresh" class="btn btn-danger">refreshPage</button></center>
+                <center><button hx-get="{% url 'BackEndMedalTable' %}" hx-target="#medaltable" hx-swap="outerHTML" class="btn btn-danger">Return to the Medal Table Haul</button></center>
             </div>
             </center>
-            <script>
-                function refreshPage() {
-                    // Stop HTMX requests
-                    if (window.htmx) {
-                        htmx.stop(); // Stop all HTMX requests
-                    }
-                    
-                    // Refresh the page
-                    window.location.href = window.location.href;
-                }
-            </script>
+           
             
         </form>
     </div>
 
 </div>
-
+</div>
 
 
 
