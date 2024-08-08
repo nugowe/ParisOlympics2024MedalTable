@@ -40,7 +40,6 @@ if (!is.null(medal_table)) {
   #print(medal_data[c(1),])
   medal_data <- medal_data[c(1,2,7,3,4,5,6)]
   medal_data <- head(medal_data, -1)
-  medal_data <- medal_data[-1,]
   print(medal_data)
   medal_data$ID <- 1:nrow(medal_data)
   medal_data <- medal_data[c(8,2,3,4,5,6,7)]
