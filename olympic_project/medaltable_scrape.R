@@ -14,7 +14,7 @@ cat("Page title:", page_title, "\n")
 
 # Find the table with the specified class
 medal_table <- page %>%
-  html_node("table.wikitable.sortable.notheme.plainrowheaders.jquery-tablesorter")
+  html_node("table.wikitable.sortable.plainrowheaders.jquery-tablesorter")
 
 # Check if the table was found
 if (!is.null(medal_table)) {

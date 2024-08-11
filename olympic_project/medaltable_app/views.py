@@ -24,8 +24,10 @@ def GamesDuration(request):
     hours = time_left.seconds // 3600
     minutes = time_left.seconds // 60 % 60
     seconds = time_left.seconds % 60
-
-    return HttpResponse(f"<h3><i><strong>THE GAMES END IN </strong> {days} days, {hours} hours, {minutes} minutes, {seconds} seconds....</i></h3>")
+    if days < 1:
+        return HttpResponse(f"<h3><i><strong>THE GAMES ENDED ON THE 11th of AUGUST 2024!</i></h3>")
+    else:
+        return HttpResponse(f"<h3><i><strong>THE GAMES END IN </strong> {days} days, {hours} hours, {minutes} minutes, {seconds} seconds....</i></h3>")
 
 
 
@@ -38,4 +40,7 @@ def GamesPercentage(request):
     EPLElapsedDays = EPLDuration - EPLDurationTillDate
     PercentagePlayingdaysleft = (EPLElapsedDays / EPLDuration) * 100
     PercentagePlayingdaysleft = round(PercentagePlayingdaysleft, 0)
-    return HttpResponse(f"<h3><i>ABOUT <strong>{PercentagePlayingdaysleft}%</strong> OF EVENT DAYS LEFT!....</i></h3>")
+    if PercentagePlayingdaysleft > 100:
+        return HttpResponse(f"<h3><i>100% OF THE EVENTS HAVE TAKEN PLACE!....</i></h3>")
+    else:
+        return HttpResponse(f"<h3><i>ABOUT <strong>{PercentagePlayingdaysleft}%</strong> OF EVENT DAYS LEFT!....</i></h3>")
